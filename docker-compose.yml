@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  api_gateway:
+    build:
+      context: ./backend
+      dockerfile: api_gateway/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=bolt://neo4j:7687
+      - VECTOR_DB_URL=http://qdrant:6333
+      - REDIS_URL=redis://redis:6379
+
+  neo4j:
+    image: neo4j:latest
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/password
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    ports:
+      - "4001:4001"
+      - "5001:5001"
+      - "8080:8080"
