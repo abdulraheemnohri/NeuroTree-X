@@ -28,4 +28,6 @@ def test_p2p_peers():
     client = TestClient(p2p_app)
     response = client.get("/peers")
     assert response.status_code == 200
-    assert "node-alpha-1" in response.json()["peers"]
+    # response.json() is now a List[PeerInfo]
+    peers = response.json()
+    assert any(peer["id"] == "node-alpha-1" for peer in peers)
