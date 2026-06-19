@@ -7,6 +7,9 @@ import NeuroViz from '../components/NeuroViz';
 import AIAgentGenesis from '../components/AIAgentGenesis';
 import VoiceController from '../components/VoiceController';
 import HologramMode from '../components/HologramMode';
+import AGIAssistant from '../components/AGIAssistant';
+import SystemHealth from '../components/SystemHealth';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -23,13 +26,11 @@ export default function Home() {
         </div>
 
         <div className="flex gap-4 items-center">
-           <div className="flex flex-col items-end">
-              <span className="text-[10px] text-cyan-400 font-bold tracking-widest uppercase">Synaptic Core Online</span>
-              <span className="text-[10px] text-gray-600 font-mono uppercase italic">Latency: 1.4ms // P2P Active</span>
-           </div>
-           <div className="w-px h-8 bg-gray-800"></div>
+           <Link href="/lab" className="px-6 py-2 bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 text-xs font-black rounded-lg hover:bg-emerald-500 hover:text-black transition-all uppercase">
+              Research Lab
+           </Link>
            <button className="px-6 py-2 bg-white text-black text-xs font-black rounded-lg hover:bg-gray-200 transition-all uppercase">
-              Enter Lab
+              Enter Universe
            </button>
         </div>
       </header>
@@ -37,20 +38,22 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
         <div className="lg:col-span-3 space-y-6">
           <BrainDashboard />
-          <AIAgentGenesis />
-          <SimulationViewer />
-          <HologramMode />
+          <AGIAssistant />
+          <SystemHealth />
         </div>
 
         <div className="lg:col-span-6 space-y-6">
           <ThreeTree />
           <NeuroViz />
+          <AIAgentGenesis />
         </div>
 
         <div className="lg:col-span-3 space-y-6">
           <NodeDetailPanel />
+          <HologramMode />
+          <SimulationViewer />
 
-          <div className="p-6 bg-[#0a0a0a] border border-gray-800 rounded-2xl shadow-inner">
+          <div className="p-6 bg-[#0a0a0a] border border-gray-800 rounded-2xl">
              <h4 className="text-[10px] font-black text-gray-600 uppercase tracking-[0.2em] mb-4">Neural Activity Log</h4>
              <div className="space-y-3 font-mono text-[10px]">
                 <p className="text-cyan-500/80 underline underline-offset-4">>>> Researching 'Synaptic Weighting'</p>

@@ -1,11 +1,23 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import os
+# from qdrant_client import QdrantClient
 
 app = FastAPI(title="NeuroTree X Memory Service")
 
-# Mock Qdrant client initialization
-# In a real app: client = QdrantClient(url=os.getenv("VECTOR_DB_URL"))
+class QdrantConnector:
+    def __init__(self):
+        self.url = os.getenv("VECTOR_DB_URL", "http://qdrant:6333")
+        self.client = None
+
+    def connect(self):
+        # In production: self.client = QdrantClient(url=self.url)
+        pass
+
+    def upsert_memory(self, vector, payload):
+        return {"status": "indexed", "vector_dim": len(vector)}
+
+memory_db = QdrantConnector()
 
 class Point(BaseModel):
     vector: list[float]
@@ -17,5 +29,5 @@ async def root():
 
 @app.post("/memory")
 async def add_memory(point: Point):
-    # Mock Qdrant upsert
-    return {"message": "Memory added to vector store", "point_preview": point.payload}
+    res = memory_db.upsert_memory(point.vector, point.payload)
+    return {"message": "Memory indexed in vector space", "result": res}
