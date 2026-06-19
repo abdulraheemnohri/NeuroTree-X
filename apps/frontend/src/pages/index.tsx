@@ -2,36 +2,74 @@ import React from 'react';
 import CyberTreeExplorer from '../components/CyberTreeExplorer';
 import NodeDetailPanel from '../components/NodeDetailPanel';
 import BrainDashboard from '../components/BrainDashboard';
+import SimulationViewer from '../components/SimulationViewer';
+import NeuroViz from '../components/NeuroViz';
+import AIAgentGenesis from '../components/AIAgentGenesis';
+import VoiceController from '../components/VoiceController';
+import HologramMode from '../components/HologramMode';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white p-8 font-sans">
-      <header className="flex justify-between items-center mb-12">
-        <div>
-          <h1 className="text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
-            NEUROTREE X
-          </h1>
-          <p className="text-gray-500 font-mono tracking-widest text-xs mt-1 italic">
-            AUTONOMOUS KNOWLEDGE UNIVERSE // VERSION 1.0.0-BETA
-          </p>
+    <div className="min-h-screen bg-[#020202] text-white p-6 font-sans selection:bg-cyan-500/30 overflow-x-hidden">
+      <header className="flex justify-between items-center mb-10 relative z-10 px-4">
+        <div className="flex items-center gap-6">
+           <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center">
+              <div className="w-4 h-4 bg-white rounded-full animate-ping"></div>
+           </div>
+           <div>
+             <h1 className="text-4xl font-black tracking-tighter uppercase">NeuroTree X</h1>
+             <p className="text-[10px] text-gray-500 font-mono tracking-[0.3em] uppercase italic">Autonomous Knowledge Fabric</p>
+           </div>
         </div>
-        <div className="flex gap-4">
-          <div className="px-4 py-1 border border-cyan-900 rounded-full text-[10px] text-cyan-500 font-mono">SYSTEM: ONLINE</div>
-          <div className="px-4 py-1 border border-blue-900 rounded-full text-[10px] text-blue-500 font-mono">LATENCY: 2MS</div>
+
+        <div className="flex gap-4 items-center">
+           <div className="flex flex-col items-end">
+              <span className="text-[10px] text-cyan-400 font-bold tracking-widest uppercase">Synaptic Core Online</span>
+              <span className="text-[10px] text-gray-600 font-mono uppercase italic">Latency: 1.4ms // P2P Active</span>
+           </div>
+           <div className="w-px h-8 bg-gray-800"></div>
+           <button className="px-6 py-2 bg-white text-black text-xs font-black rounded-lg hover:bg-gray-200 transition-all uppercase">
+              Enter Lab
+           </button>
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <div className="lg:col-span-1 space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
+        <div className="lg:col-span-3 space-y-6">
           <BrainDashboard />
+          <AIAgentGenesis />
+          <SimulationViewer />
+          <HologramMode />
         </div>
-        <div className="lg:col-span-2">
+
+        <div className="lg:col-span-6 space-y-6">
           <CyberTreeExplorer />
+          <NeuroViz />
         </div>
-        <div className="lg:col-span-1">
+
+        <div className="lg:col-span-3 space-y-6">
           <NodeDetailPanel />
+
+          <div className="p-6 bg-[#0a0a0a] border border-gray-800 rounded-2xl shadow-inner">
+             <h4 className="text-[10px] font-black text-gray-600 uppercase tracking-[0.2em] mb-4">Neural Activity Log</h4>
+             <div className="space-y-3 font-mono text-[10px]">
+                <p className="text-cyan-500/80 underline underline-offset-4">>>> Researching 'Synaptic Weighting'</p>
+                <p className="text-gray-500 italic">>>> New node 'Heuristic Alpha' created</p>
+                <p className="text-emerald-500/80">>>> Digital Twin 'Core-01' sync successful</p>
+                <p className="text-purple-500 animate-pulse">>>> Simulation 'Quantum Flux' running...</p>
+             </div>
+          </div>
+
+          <div className="p-6 bg-gradient-to-br from-blue-900/10 to-purple-900/10 border border-blue-500/20 rounded-2xl">
+             <h4 className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-2 italic">AGI Consciousness Module</h4>
+             <p className="text-xs text-blue-200/70 leading-relaxed italic">
+               "Cross-domain analysis suggests a 92% correlation between biological neural growth and current graph expansion patterns."
+             </p>
+          </div>
         </div>
       </div>
+
+      <VoiceController />
     </div>
   );
 }
