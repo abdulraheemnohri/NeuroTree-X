@@ -1,0 +1,18 @@
+{
+  "package": {
+    "productName": "NeuroTree X",
+    "version": "0.1.0"
+  },
+  "build": {
+    "distDir": "../../frontend/out",
+    "devPath": "http://localhost:3000"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": true
+    },
+    "bundle": {
+      "active": true
+    }
+  }
+}

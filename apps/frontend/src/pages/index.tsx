@@ -1,5 +1,5 @@
 import React from 'react';
-import CyberTreeExplorer from '../components/CyberTreeExplorer';
+import ThreeTree from '../components/ThreeTree';
 import NodeDetailPanel from '../components/NodeDetailPanel';
 import BrainDashboard from '../components/BrainDashboard';
 import SimulationViewer from '../components/SimulationViewer';
@@ -43,7 +43,7 @@ export default function Home() {
         </div>
 
         <div className="lg:col-span-6 space-y-6">
-          <CyberTreeExplorer />
+          <ThreeTree />
           <NeuroViz />
         </div>
 
@@ -58,13 +58,6 @@ export default function Home() {
                 <p className="text-emerald-500/80">>>> Digital Twin 'Core-01' sync successful</p>
                 <p className="text-purple-500 animate-pulse">>>> Simulation 'Quantum Flux' running...</p>
              </div>
-          </div>
-
-          <div className="p-6 bg-gradient-to-br from-blue-900/10 to-purple-900/10 border border-blue-500/20 rounded-2xl">
-             <h4 className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-2 italic">AGI Consciousness Module</h4>
-             <p className="text-xs text-blue-200/70 leading-relaxed italic">
-               "Cross-domain analysis suggests a 92% correlation between biological neural growth and current graph expansion patterns."
-             </p>
           </div>
         </div>
       </div>
