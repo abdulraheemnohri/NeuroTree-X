@@ -31,5 +31,27 @@
     "model": "gemma-7b",
     "tools": [],
     "status": "idle"
+  },
+  {
+    "name": "Explorer-1",
+    "type": "Explorer",
+    "skills": [
+      "Web Search",
+      "PDF Parsing"
+    ],
+    "model": "gemma-7b",
+    "tools": [],
+    "status": "idle"
+  },
+  {
+    "name": "Explorer-1",
+    "type": "Explorer",
+    "skills": [
+      "Web Search",
+      "PDF Parsing"
+    ],
+    "model": "gemma-7b",
+    "tools": [],
+    "status": "idle"
   }
 ]
