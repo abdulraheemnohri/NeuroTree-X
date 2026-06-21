@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --primary-glow: rgba(0, 219, 233, 0.4);
+            --secondary-glow: rgba(206, 93, 255, 0.3);
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(219, 252, 255, 0.1);
+            box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.05);
+        }
+        .neural-node {
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 8px var(--primary-glow));
+        }
+        .neural-node:hover {
+            filter: drop-shadow(0 0 15px var(--primary-glow));
+            transform: scale(1.2);
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(0, 219, 233, 0.2), transparent);
+            position: absolute;
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan {
+            from { top: -10%; }
+            to { top: 110%; }
+        }
+        .pulse {
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; filter: blur(2px); }
+            50% { opacity: 1; filter: blur(1px); }
+        }
+        .cyber-grid {
+            background-image: linear-gradient(rgba(0, 219, 233, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 219, 233, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0e0e0e",
+                        "secondary-container": "#ce5dff",
+                        "error-container": "#93000a",
+                        "background": "#131313",
+                        "surface": "#131313",
+                        "on-surface-variant": "#b9cacb",
+                        "surface-container": "#201f1f",
+                        "inverse-surface": "#e5e2e1",
+                        "primary": "#dbfcff",
+                        "primary-fixed-dim": "#00dbe9",
+                        "primary-container": "#00f0ff",
+                        "outline": "#849495",
+                        "tertiary-fixed": "#79ff5b",
+                        "surface-tint": "#00dbe9",
+                        "on-secondary-fixed": "#320047",
+                        "tertiary-container": "#33fb0a",
+                        "on-secondary": "#520071",
+                        "surface-container-high": "#2a2a2a",
+                        "outline-variant": "#3b494b",
+                        "on-secondary-container": "#480064",
+                        "on-primary-fixed": "#002022",
+                        "tertiary-fixed-dim": "#2ae500",
+                        "tertiary": "#e1ffd1",
+                        "surface-container-low": "#1c1b1b",
+                        "inverse-primary": "#006970",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary": "#053900",
+                        "secondary-fixed-dim": "#ebb2ff",
+                        "inverse-on-surface": "#313030",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#353534",
+                        "surface-bright": "#3a3939",
+                        "on-primary-fixed-variant": "#004f54",
+                        "on-surface": "#e5e2e1",
+                        "secondary": "#ebb2ff",
+                        "primary-fixed": "#7df4ff",
+                        "surface-dim": "#131313",
+                        "on-primary": "#00363a",
+                        "on-tertiary-fixed": "#022100",
+                        "on-background": "#e5e2e1",
+                        "secondary-fixed": "#f8d8ff",
+                        "on-secondary-fixed-variant": "#74009f",
+                        "on-primary-container": "#006970",
+                        "on-tertiary-container": "#106e00",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#095300",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["JetBrains Mono"],
+                        "label-caps": ["JetBrains Mono"],
+                        "code-sm": ["JetBrains Mono"],
+                        "display-xl-mobile": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "display-xl": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "code-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-xl-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter py-unit h-16 w-full bg-background/60 backdrop-blur-xl border-b border-primary/20 shadow-[0_0_15px_rgba(0,219,233,0.1)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">hub</span>
+<h1 class="font-headline-lg text-headline-lg text-primary-fixed-dim tracking-tight backdrop-blur-md">NeuroTree X</h1>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<nav class="flex gap-6">
+<a class="font-label-caps text-label-caps text-primary font-bold hover:text-primary transition-all duration-300" href="#">NEURAL GRAPH</a>
+<a class="font-label-caps text-label-caps text-outline hover:bg-primary/10 hover:text-primary transition-all duration-300" href="#">SYNAPSE FLOW</a>
+<a class="font-label-caps text-label-caps text-outline hover:bg-primary/10 hover:text-primary transition-all duration-300" href="#">METRICS</a>
+</nav>
+<button class="material-symbols-outlined text-primary-fixed-dim hover:scale-[1.02] active:scale-95 transition-all">account_tree</button>
+</div>
+<button class="md:hidden material-symbols-outlined text-primary-fixed-dim">menu</button>
+</header>
+<main class="relative min-h-screen pt-16 pb-20 md:pb-0 overflow-hidden cyber-grid">
+<!-- Neural Background Effect -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-40">
+
+</div>
+<!-- Layout Container -->
+<div class="relative z-10 max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-12 gap-gutter h-[calc(100vh-80px)] items-center">
+<!-- Left: AI Brain Metrics (Bento Style) -->
+<aside class="md:col-span-3 flex flex-col gap-6 order-2 md:order-1">
+<div class="glass-panel p-6 rounded-xl border-l-4 border-primary">
+<p class="font-label-caps text-label-caps text-outline mb-1">BRAIN_METRICS_v4</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-6">AI Brain Metrics</h2>
+<div class="space-y-6">
+<div class="relative group">
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-md text-on-surface-variant">Memory Size</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary-fixed-dim">8.4 TB</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed-dim w-[84%] shadow-[0_0_8px_var(--primary-glow)]"></div>
+</div>
+</div>
+<div class="relative group">
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-md text-on-surface-variant">Knowledge Nodes</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-secondary">1.2M</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed-dim w-[65%] shadow-[0_0_8px_var(--secondary-glow)]"></div>
+</div>
+</div>
+<div class="relative group">
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-md text-on-surface-variant">Learning Progress</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-tertiary-fixed-dim">98.4%</span>
+</div>
+<div class="h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim w-[98.4%] animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary-fixed-dim text-sm animate-spin">sync</span>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-outline">SYSTEM_STATUS</p>
+<p class="font-body-md text-tertiary-fixed-dim">NEURAL_SYNC_ACTIVE</p>
+</div>
+</div>
+</aside>
+<!-- Center: Interactive Cyber-Tree (Canvas Area) -->
+<section class="md:col-span-6 relative flex items-center justify-center order-1 md:order-2 h-[400px] md:h-full">
+<div class="absolute w-full h-full flex items-center justify-center">
+<!-- Central Core -->
+<div class="relative z-20 w-32 h-32 md:w-48 md:h-48 rounded-full border border-primary/40 flex items-center justify-center bg-primary/5 backdrop-blur-lg shadow-[0_0_40px_rgba(0,219,233,0.2)] pulse">
+<span class="material-symbols-outlined text-5xl md:text-7xl text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<!-- Orbiting Nodes & Lines -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-60" viewbox="0 0 800 600">
+<defs>
+<lineargradient id="lineGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color: #00dbe9; stop-opacity: 0.2"></stop>
+<stop offset="50%" style="stop-color: #00dbe9; stop-opacity: 0.8"></stop>
+<stop offset="100%" style="stop-color: #ce5dff; stop-opacity: 0.2"></stop>
+</lineargradient>
+</defs>
+<!-- Sample Connecting Lines -->
+<path d="M400 300 L250 150" stroke="url(#lineGrad)" stroke-dasharray="4,4" stroke-width="1.5"></path>
+<path d="M400 300 L550 150" stroke="url(#lineGrad)" stroke-width="1.5"></path>
+<path d="M400 300 L300 450" stroke="url(#lineGrad)" stroke-dasharray="2,2" stroke-width="1.5"></path>
+<path d="M400 300 L500 450" stroke="url(#lineGrad)" stroke-width="1.5"></path>
+</svg>
+<!-- Interactive Nodes -->
+<div class="absolute top-1/4 left-1/4 neural-node cursor-pointer glass-panel p-2 rounded-lg border-primary/30">
+<span class="material-symbols-outlined text-primary text-xl">memory</span>
+</div>
+<div class="absolute top-1/4 right-1/4 neural-node cursor-pointer glass-panel p-2 rounded-lg border-secondary/30">
+<span class="material-symbols-outlined text-secondary text-xl">schema</span>
+</div>
+<div class="absolute bottom-1/4 left-1/3 neural-node cursor-pointer glass-panel p-2 rounded-lg border-tertiary/30">
+<span class="material-symbols-outlined text-tertiary text-xl">auto_awesome</span>
+</div>
+<div class="absolute bottom-1/3 right-1/4 neural-node cursor-pointer glass-panel p-2 rounded-lg border-primary/30">
+<span class="material-symbols-outlined text-primary text-xl">insights</span>
+</div>
+</div>
+</section>
+<!-- Right: Node Detail Panel -->
+<aside class="md:col-span-3 flex flex-col gap-6 order-3">
+<div class="glass-panel p-6 rounded-xl border-r-4 border-secondary overflow-hidden relative">
+<div class="scanline"></div>
+<p class="font-label-caps text-label-caps text-outline mb-1">NODE_INSPECTOR</p>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-secondary mb-4">Node Detail Panel</h2>
+<div class="space-y-4">
+<div class="flex flex-col">
+<span class="font-label-caps text-[10px] text-outline">SELECTED_ENTITY</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-white">Transformer AI</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6">
+<div class="bg-surface-container-high/40 p-3 rounded border border-white/5">
+<p class="font-label-caps text-[10px] text-outline">COMPLEXITY</p>
+<p class="font-body-md text-primary-fixed-dim">High</p>
+</div>
+<div class="bg-surface-container-high/40 p-3 rounded border border-white/5">
+<p class="font-label-caps text-[10px] text-outline">CONNECTIONS</p>
+<p class="font-body-md text-secondary">452</p>
+</div>
+</div>
+<div class="bg-surface-container-high/20 p-4 rounded border border-white/5 mt-4">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-caps text-[10px] text-outline">LAST_UPDATE</span>
+<span class="text-[10px] text-tertiary-fixed-dim animate-pulse">LIVE</span>
+</div>
+<p class="font-code-sm text-code-sm text-on-surface-variant font-mono">2ms ago</p>
+</div>
+<button class="w-full mt-6 py-3 px-6 bg-secondary-container text-on-secondary-container font-label-caps text-label-caps rounded flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-[0_0_15px_rgba(206,93,255,0.4)]">
+                            RECALIBRATE_NODE
+                            <span class="material-symbols-outlined text-sm">settings_input_component</span>
+</button>
+</div>
+</div>
+<!-- Neural Log Stream -->
+<div class="glass-panel p-4 rounded-xl flex-1 flex flex-col">
+<p class="font-label-caps text-[10px] text-outline mb-3">SYSTEM_LOGS</p>
+<div class="space-y-2 font-code-sm text-[12px] font-mono text-outline-variant overflow-y-auto max-h-48 scrollbar-hide">
+<div class="flex gap-2"><span class="text-primary-fixed-dim">[OK]</span> Synapse 4x9 connected</div>
+<div class="flex gap-2"><span class="text-secondary">[UP]</span> Optimizing Transformer layers</div>
+<div class="flex gap-2"><span class="text-tertiary-fixed-dim">[IN]</span> New knowledge injection...</div>
+<div class="flex gap-2"><span class="text-outline">[IDLE]</span> Awaiting core command</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 bg-surface-container-lowest/80 backdrop-blur-lg border-t border-secondary/20 shadow-[0_-4px_20px_rgba(206,93,255,0.1)] md:hidden z-50">
+<div class="flex flex-col items-center justify-center bg-secondary-container/30 text-secondary rounded-xl p-2 shadow-[0_0_12px_rgba(206,93,255,0.4)] active:scale-90 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline opacity-60 hover:opacity-100 transition-opacity active:scale-90 duration-150">
+<span class="material-symbols-outlined">query_stats</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline opacity-60 hover:opacity-100 transition-opacity active:scale-90 duration-150">
+<span class="material-symbols-outlined">settings_input_component</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline opacity-60 hover:opacity-100 transition-opacity active:scale-90 duration-150">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+</nav>
+<!-- Background Elements -->
+<div class="fixed top-1/2 left-0 w-64 h-64 bg-primary/5 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+<div class="fixed bottom-0 right-0 w-96 h-96 bg-secondary/5 blur-[150px] rounded-full translate-x-1/4 translate-y-1/4"></div>
+<script>
+        // Interactive Micro-interactions
+        document.querySelectorAll('.neural-node').forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                const icon = node.querySelector('.material-symbols-outlined');
+                icon.style.fontVariationSettings = "'FILL' 1";
+            });
+            node.addEventListener('mouseleave', () => {
+                const icon = node.querySelector('.material-symbols-outlined');
+                icon.style.fontVariationSettings = "'FILL' 0";
+            });
+        });
+
+        // Simple typing effect for logs
+        const logContainer = document.querySelector('.scrollbar-hide');
+        const phrases = [
+            "Syncing neuron #8492...",
+            "Expanding semantic graph...",
+            "Latent space search: 0.004s",
+            "Core heat nominal: 34°C"
+        ];
+
+        setInterval(() => {
+            const div = document.createElement('div');
+            div.className = 'flex gap-2 opacity-0 transition-opacity duration-500';
+            div.innerHTML = `<span class="text-primary-fixed-dim">[>>]</span> ${phrases[Math.floor(Math.random() * phrases.length)]}`;
+            logContainer.prepend(div);
+            setTimeout(() => div.classList.remove('opacity-0'), 50);
+            if (logContainer.children.length > 8) {
+                logContainer.removeChild(logContainer.lastChild);
+            }
+        }, 3000);
+    </script>
+</body></html>
