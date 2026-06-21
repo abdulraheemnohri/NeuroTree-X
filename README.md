@@ -44,3 +44,6 @@ docker-compose up -d
 
 ---
 *NeuroTree X - Empowering the next generation of AI knowledge civilizations.*
+
+### 4. Mobile Synaptic Link
+*A full-featured React Native application providing mobile access to the NeuroTree X universe, featuring a dashboard, neural explorer, and AGI companion.*
